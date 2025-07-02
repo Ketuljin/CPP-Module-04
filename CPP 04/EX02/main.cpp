@@ -6,7 +6,7 @@
 /*   By: jkerthe <jkerthe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 07:20:03 by jkerthe           #+#    #+#             */
-/*   Updated: 2025/07/02 07:03:20 by jkerthe          ###   ########.fr       */
+/*   Updated: 2025/07/02 09:11:36 by jkerthe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,33 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
+#include "Brain.hpp"
 
 int main()
 {
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    const WrongAnimal* wa = new WrongAnimal();
-    const WrongAnimal* wc = new WrongCat();
-    std::cout << wc->getType() << " " << std::endl;
-    wc->makeSound();
-    std::cout << j->getType() << " " << std::endl;
-    j->makeSound();
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
+    Animal* i = new Cat();
+    Animal* j = new Dog();
+    int index = 10;
+    Animal* tab[index];
 
-    meta->makeSound();
-    wa->makeSound();
-    delete j;
+    for (int i = 0; i <= index; ++i)
+    {
+        if (i % 2 == 0)
+            tab[i] = new Dog();
+        else
+            tab[i] = new Cat();
+    }
+    std::cout << std::endl << std::endl << std::endl;
+    for (int i = 0; i <= index; ++i)
+        tab[i]->makeSound();
+    std::cout << std::endl << std::endl << std::endl;
+    for (int i = 0; i <= index; ++i)
+        delete(tab[i]); 
+    j->setIdea(0, "hello");
+    i->setIdea(0, "hi");
+    std::cout << i->getIdea(0) << " "<< std::endl;
+    std::cout << j->getIdea(0) << " " << std::endl;
     delete i;
-    delete meta;
-    delete wa;
-    delete wc;
+    delete j;
     return 0;
 }
